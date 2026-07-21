@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- This viewport line is what makes the page render correctly on phones. Don't remove it. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Jakob Stubenrauch</title>
+  <meta name="description" content="Personal website of Jakob Stubenrauch.">
+
+  <style>
+    /* ---- Design tokens (edit these to re-skin the whole page) ---- */
+    :root {
+      --ink:    #1a1a1a;   /* main text            */
+      --muted:  #555555;   /* secondary text       */
+      --accent: #2a5db0;   /* links                */
+      --rule:   #e4e4e4;   /* thin dividers        */
+      --bg:     #ffffff;   /* background           */
+      --maxw:   40rem;     /* content column width */
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+
+    /* The centered reading column that keeps line lengths comfortable. */
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 3rem 1.25rem 4rem;
+    }
+
+    h1, h2 {
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 1.9rem; margin: 0 0 .2rem; }
+    h2 {
+      font-size: 1.3rem;
+      margin: 2.75rem 0 1rem;
+      padding-bottom: .35rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    h3 {
+      font-size: 1.05rem;
+      margin: 1.6rem 0 .5rem;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; } /* keyboard accessibility */
+
+    .role { color: var(--muted); margin: .25rem 0 0; }
+    .contact { color: var(--muted); font-size: .95rem; margin: .4rem 0 0; }
+
+    /* ---- Header layout: avatar video next to name ---- */
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    .avatar-video {
+      width: 11rem;
+      height: 11rem;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* ---- Publications ---- */
+    .pub-list { list-style: none; counter-reset: pub; margin: 0; padding: 0; }
+    .pub { counter-increment: pub; position: relative; margin: 0 0 1.4rem; padding-left: 2.2rem; scroll-margin-top: 1rem; }
+    .pub::before { content: "[" counter(pub) "]"; position: absolute; left: 0; color: var(--muted); }
+    .pub .title { font-style: italic; }
+    .pub .venue { color: var(--muted); }
+    .pub .links { font-size: .9rem; margin-top: .15rem; }
+    .pub .links a { margin-right: .6rem; }
+
+    .me { font-weight: 700; } /* wrap your own name in <span class="me"> in author lists */
+
+    /* ---- Research figures: images have different aspect ratios, so each
+           sits in a uniform bordered frame (object-fit: contain, no
+           cropping). auto-fit collapses to one column on mobile and
+           settles into three across at the normal reading-column width,
+           no media query needed. ---- */
+    .fig-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.25rem;
+      margin: 1rem 0;
+    }
+    .fig-grid figure { margin: 0; }
+    .fig-frame {
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      border-radius: .35rem;
+      padding: .5rem;
+    }
+    .fig-frame img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .fig-grid figcaption {
+      margin-top: .5rem;
+      font-size: .85rem;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <!-- ================= HEADER ================= -->
+    <header>
+      <div class="header-inner">
+        <video class="avatar-video" src="assets/avatar.mp4" autoplay muted loop playsinline></video>
+        <div>
+          <h1>Jakob Stubenrauch</h1>
+          <p class="role">PhD student at BCCN Berlin on statistical physics of complex systems</p>
+          <!-- <p class="contact">
+            <a href="mailto:you@example.com">you@example.com</a>
+          </p> -->
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= INTRO ================= -->
+    <section>
+      <p>
+        My research interests are complex systems, noisy systems, neural networks, and computation.
+      </p>
+      <p>
+        I focus on idealized models of networks, disorder, and noise that are analytically tractable and that I believe contain key 
+        principles of cognition and intelligence. To this end I use methods from statistical physics,
+        such as replica theory, large deviation theory, path integrals, or random matrix 
+        theory.
+       
+      </p>
+      <h2>Vita</h2>
+      <p>
+        I studied physics at RWTH Aachen and did my bachelor's project
+        with <a href="https://www.quantuminfo.physik.rwth-aachen.de/cms/quantuminfo/forschung/quanteninformation-theorie/gruppe-hassler/~bblxl/fabian-hassler/">Fabian Hassler</a> (see [<a href="#pub5">5</a>])
+        and my master's project with <a href="https://www.fz-juelich.de/profile/helias_m">Moritz Helias</a>, <a href="https://alexvanmeegen.github.io/">Alexander van Meegen</a>, Christian Keup,
+        and Anno Kurth (see [<a href="#pub3">3</a>]).
+      </p>
+      <p>
+        Currently I am a PhD student at the <a href="https://www.bccn-berlin.de/">Bernstein Center for Computational Neuroscience Berlin</a> and <a href="https://www.hu-berlin.de/en">Humboldt University
+        Berlin</a> with <a href="https://people.physik.hu-berlin.de/~lindner/">Benjamin Lindner</a>.
+        I am funded by the <a href="https://www.sfb1315.de/">CRC1315</a> "Mechanisms and disturbances in memory consolidation". In my PhD I focus on
+        memory and response in spiking neural networks [<a href="#pub1">1</a>,<a href="#pub2">2</a>,<a href="#pub4">4</a>], including more general results on
+        point processes and stochastic systems [<a href="#pub4">4</a>].
+
+      </p>
+
+      <!-- <p>My past projects include:</p>
+      <ul>
+        <li>Properties of the exponentially many unstable fixed points in chaotic neural networks, see [3]</li>
+        <li>Correlation-response relations in dynamical systems driven by non-Gaussian noise, see [4]</li>
+        <li>The stochastic process of synaptic weights under heteroassociation learning in spiking neural networks, see [1]</li>
+      </ul> -->
+      <p>For publications see the list below or my <a href="https://scholar.google.com/citations?user=DMNHAZQAAAAJ">Google Scholar profile</a>.</p>
+      <!-- <p>
+        My CV is available <a href="assets/cv.pdf">here</a>.
+      </p> -->
+    </section>
+
+    <!-- ================= RESEARCH ================= -->
+    <section>
+      <h2>Research</h2>
+      <div class="fig-grid">
+        <figure>
+          <a class="fig-frame" href="assets/keyfigPRXLife2026.png" target="_blank" rel="noopener">
+            <img src="assets/keyfigPRXLife2026.png" alt="Key figure: Stochastic synaptic dynamics under learning">
+          </a>
+          <figcaption>Stochastic synaptic dynamics under learning <a href="https://doi.org/10.1103/r21z-29nv">[1]</a></figcaption>
+        </figure>
+        <figure>
+          <a class="fig-frame" href="assets/keyfigPRR2025.png" target="_blank" rel="noopener">
+            <img src="assets/keyfigPRR2025.png" alt="Key figure: Fixed point geometry in chaotic neural networks">
+          </a>
+          <figcaption>Fixed point geometry in chaotic neural networks <a href="https://doi.org/10.1103/PhysRevResearch.7.023203">[3]</a></figcaption>
+        </figure>
+        <figure>
+          <a class="fig-frame" href="assets/keyfigPRX2024.png" target="_blank" rel="noopener">
+            <img src="assets/keyfigPRX2024.png" alt="Key figure: Furutsu&ndash;Novikov&ndash;like cross-correlation&ndash;response relations">
+          </a>
+          <figcaption>Cross-correlation&ndash;response relations <a href="https://doi.org/10.1103/PhysRevX.14.041047">[4]</a></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ================= PUBLICATIONS ================= -->
+    <section>
+      <h2>Publications</h2>
+
+      <ol class="pub-list">
+
+      <li class="pub" id="pub1">
+        <div>
+          <span class="me">J. Stubenrauch</span>, N. Auer, R. Kempter, and B. Lindner,
+          <span class="title">Stochastic synaptic dynamics under learning,</span>
+          <span class="venue"><a href="https://doi.org/10.1103/r21z-29nv">PRX Life 4, 023006</a> (2026).</span>
+        </div>
+      </li>
+
+      <li class="pub" id="pub2">
+        <div>
+          N. Auer, L. Chen, <span class="me">J. Stubenrauch</span>, B. Lindner, and R. Kempter,
+          <span class="title">Population sparseness determines strength of Hebbian plasticity for maximal memory lifetime in associative networks,</span>
+          <span class="venue"><a href="https://doi.org/10.1371/journal.pcbi.1013235">PLoS Comput. Biol. 22, e1013235</a> (2026).</span>
+        </div>
+      </li>
+
+      <li class="pub" id="pub3">
+        <div>
+          <span class="me">J. Stubenrauch</span>, C. Keup, A. C. Kurth, M. Helias, and A. van Meegen,
+          <span class="title">Fixed point geometry in chaotic neural networks,</span>
+          <span class="venue"><a href="https://doi.org/10.1103/PhysRevResearch.7.023203">Phys. Rev. Research 7, 023203</a> (2025).</span>
+        </div>
+      </li>
+
+      <li class="pub" id="pub4">
+        <div>
+          <span class="me">J. Stubenrauch</span> and B. Lindner,
+          <span class="title">Furutsu-Novikov&ndash;like cross-correlation&ndash;response relations for systems driven by shot noise,</span>
+          <span class="venue"><a href="https://doi.org/10.1103/PhysRevX.14.041047">Phys. Rev. X 14, 041047</a> (2024).</span>
+        </div>
+      </li>
+
+      <li class="pub" id="pub5">
+        <div>
+          F. Hassler, <span class="me">J. Stubenrauch</span>, and A. Ciani,
+          <span class="title">Equation of motion approach to black-box quantization: Taming the multimode Jaynes-Cummings model,</span>
+          <span class="venue"><a href="https://doi.org/10.1103/PhysRevB.99.014515">Phys. Rev. B 99, 014515</a> (2019).</span>
+        </div>
+      </li>
+
+      </ol>
+
+    </section>
+
+  </main>
+</body>
+</html>
