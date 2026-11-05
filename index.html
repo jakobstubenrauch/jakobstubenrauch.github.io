@@ -80,6 +80,9 @@
     .pub-list { list-style: none; counter-reset: pub; margin: 0; padding: 0; }
     .pub { counter-increment: pub; position: relative; margin: 0 0 1.4rem; padding-left: 2.2rem; scroll-margin-top: 1rem; }
     .pub::before { content: "[" counter(pub) "]"; position: absolute; left: 0; color: var(--muted); }
+    /* Preprints are numbered [P1], [P2], ... so the numbers of published papers stay stable. */
+    .preprints .pub { padding-left: 2.7rem; }
+    .preprints .pub::before { content: "[P" counter(pub) "]"; }
     .pub .title { font-style: italic; }
     .pub .venue { color: var(--muted); }
     .pub .links { font-size: .9rem; margin-top: .15rem; }
@@ -209,6 +212,22 @@
     <!-- ================= PUBLICATIONS ================= -->
     <section>
       <h2>Publications</h2>
+
+      <h3>Preprints</h3>
+
+      <ol class="pub-list preprints">
+
+      <li class="pub" id="pre1">
+        <div>
+          <span class="me">J. Stubenrauch</span> and C. Keup,
+          <span class="title">Spherical law for optimal layouts of random graphs,</span>
+          <span class="venue">preprint, <a href="https://arxiv.org/abs/2610.40965">arXiv:2610.40965</a> (2026).</span>
+        </div>
+      </li>
+
+      </ol>
+
+      <h3>Peer-reviewed articles</h3>
 
       <ol class="pub-list">
 
